@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MysteryMan.Logic", "src\MysteryMan.Logic\MysteryMan.Logic.csproj", "{E58E048C-CE92-4097-9F74-550117B31245}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4C7AB76A-D426-4304-8F48-92EE4C10513C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{36B1481F-A172-4C11-B4DD-3C15911CB36B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MysteryMan.Logic.Tests", "test\MysteryMan.Logic.Tests\MysteryMan.Logic.Tests.csproj", "{D2303238-DFF3-4CD3-BBEB-60E7EFB6D0E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MysticMan.Logic", "src\MysticMan.Logic\MysticMan.Logic.csproj", "{C61FA5D1-9F89-4B6D-8170-32A4991CE82F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MysticMan.Logic.Tests", "test\MysticMan.Logic.Tests\MysticMan.Logic.Tests.csproj", "{FFD94BB5-A7D5-4033-90FD-ECCF487E1D26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,21 +17,21 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E58E048C-CE92-4097-9F74-550117B31245}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E58E048C-CE92-4097-9F74-550117B31245}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E58E048C-CE92-4097-9F74-550117B31245}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E58E048C-CE92-4097-9F74-550117B31245}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D2303238-DFF3-4CD3-BBEB-60E7EFB6D0E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D2303238-DFF3-4CD3-BBEB-60E7EFB6D0E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D2303238-DFF3-4CD3-BBEB-60E7EFB6D0E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D2303238-DFF3-4CD3-BBEB-60E7EFB6D0E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C61FA5D1-9F89-4B6D-8170-32A4991CE82F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C61FA5D1-9F89-4B6D-8170-32A4991CE82F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C61FA5D1-9F89-4B6D-8170-32A4991CE82F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C61FA5D1-9F89-4B6D-8170-32A4991CE82F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFD94BB5-A7D5-4033-90FD-ECCF487E1D26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFD94BB5-A7D5-4033-90FD-ECCF487E1D26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFD94BB5-A7D5-4033-90FD-ECCF487E1D26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFD94BB5-A7D5-4033-90FD-ECCF487E1D26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{E58E048C-CE92-4097-9F74-550117B31245} = {4C7AB76A-D426-4304-8F48-92EE4C10513C}
-		{D2303238-DFF3-4CD3-BBEB-60E7EFB6D0E9} = {36B1481F-A172-4C11-B4DD-3C15911CB36B}
+		{C61FA5D1-9F89-4B6D-8170-32A4991CE82F} = {4C7AB76A-D426-4304-8F48-92EE4C10513C}
+		{FFD94BB5-A7D5-4033-90FD-ECCF487E1D26} = {36B1481F-A172-4C11-B4DD-3C15911CB36B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {13A2C882-D217-4D8F-B912-C5182C86ECC1}

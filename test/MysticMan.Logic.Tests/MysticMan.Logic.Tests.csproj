@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\MysteryMan.Logic\MysteryMan.Logic.csproj" />
+    <ProjectReference Include="..\..\src\MysticMan.Logic\MysticMan.Logic.csproj" />
   </ItemGroup>
 
 </Project>
