@@ -1,0 +1,13 @@
+<Project>
+  <PropertyGroup>
+    <Authors>Malte; Joachim</Authors>
+    <Company>MysticMan Team</Company>
+    <Copyright>MysticMan Team 2017</Copyright>
+    <Product>MysticMan GameEngine</Product>
+    <RepositoryUrl>https://github.com/MysticMan-Game/Engine</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryRoot>$(MSBuildThisFileDirectory)</RepositoryRoot>
+    <!-- Generate full pdbs for desktop targeting projects on platforms that support generating full pdbs. -->
+    <DebugType Condition="'$(OS)'=='Windows_NT' AND '$(TargetFramework)'=='net46'">full</DebugType>
+  </PropertyGroup>
+</Project>
