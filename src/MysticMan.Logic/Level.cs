@@ -1,73 +1,57 @@
-﻿namespace TheMysteryMan.Logic
-{
-    public class Level
-    {
-        private int level;
-        private int moves;
-        private int rounds;
-        private int time;
-        private bool canReachBorder;
+﻿namespace TheMysteryMan.Logic {
 
-        public Level(int level)
-        {
-            level = this.level;
-            initalize();
-        }
-
-        public int getLevel()
-        {
-            return level;
-        }
-
-        public int getMoves()
-        {
-            return moves;
-        }
-        public int getRounds()
-        {
-            return this.rounds;
-        }
-        public int getTimeInSeconds()
-        {
-            return time;
-        }
-
-        public bool getCanReachBorder()
-        {
-            return this.canReachBorder;
-        }
-            private void initalize()
-        {
-            switch (level)
-            {
-                case 1:
-                    moves = 3;
-                    rounds = 3;
-                    time = 9999;
-                    canReachBorder = false;
-                    break;
-                case 2:
-                    moves = 6;
-                    rounds = 3;
-                    time = 9999;
-                    canReachBorder = false;
-                    break;
-                case 3:
-                    moves = 12;
-                    rounds = 5;
-                    time = 20;
-                    canReachBorder = false;
-                    break;
-                case 4:
-                    moves = 15;
-                    rounds = 5;
-                    time = 20;
-                    canReachBorder = true;
-                    break;
+  public class GameConfiguration {
 
 
-            }
+    public GameConfiguration(int level) {
+      Level = level;
 
-        }
+      Initalize();
+
+
     }
+
+    public int Level { get; }
+
+    public int Moves { get; private set; }
+
+    public int Rounds { get; private set; }
+
+
+    public int TimeInSeconds { get; set; }
+
+    public bool CanReachBorder { get; set; }
+    private void Initalize() {
+      //Check if time is 9999 and then set unlimited time.
+      switch (Level) {
+        case 1:
+          Moves = 3;
+          Rounds = 3;
+          TimeInSeconds = 9999;
+          CanReachBorder = false;
+          break;
+        case 2:
+          Moves = 6;
+          Rounds = 3;
+          TimeInSeconds = 9999;
+          CanReachBorder = false;
+          break;
+        case 3:
+          Moves = 12;
+          Rounds = 5;
+          TimeInSeconds = 20;
+          CanReachBorder = false;
+          break;
+        case 4:
+          Moves = 15;
+          Rounds = 5;
+          TimeInSeconds = 20;
+          CanReachBorder = true;
+          break;
+
+
+      }
+
+    }
+  }
 }

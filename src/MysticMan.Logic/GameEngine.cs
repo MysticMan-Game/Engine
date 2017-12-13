@@ -16,13 +16,13 @@ public GameEngine(Func<int, int, int> randomGenerator)
         public Map Map { get; internal set; }
         public MysticMan Man { get; internal set; }
 
-        public Level Level { get; internal set; }
+        public GameConfiguration Level { get; internal set; }
 
         public void Run()
         {
             Map = new Map(12, 10);
             Man = new MysticMan();
-            Level = new Level(1);
+            Level = new GameConfiguration(1);
             int xPosition = _randomGenerator(0,9);
             int yPosition = _randomGenerator(0, 11);
             Man.Position = Map.GetPosition(xPosition, yPosition);
@@ -39,7 +39,7 @@ public GameEngine(Func<int, int, int> randomGenerator)
 
         private void Move(MoveDirection direction)
         {
-            String current = Man.Position;
+      string current = Man.Position;
 
             Cell cell = Map.GetPosition(current);
 
