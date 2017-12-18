@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TheMysteryMan.Logic
+﻿namespace MysticMan.Logic
 {
     public class MysticMan
     {

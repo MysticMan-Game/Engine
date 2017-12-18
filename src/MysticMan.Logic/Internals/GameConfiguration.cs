@@ -1,6 +1,7 @@
-﻿namespace TheMysteryMan.Logic {
+﻿using MysticMan.Logic.Internals;
 
-  public class GameConfiguration {
+namespace MysticMan.Logic {
+  internal class GameConfiguration : IGameConfiguration {
 
 
     public GameConfiguration(int level) {
@@ -62,26 +63,5 @@
           break;
       }
     }
-  }
-
-  public class MapSize {
-    private readonly Size _size;
-
-    internal MapSize(Size size) {
-      _size = size;
-    }
-
-    internal Size Size => _size;
-
-    public int Width => _size.Width;
-
-    public int Height => _size.Height;
-  }
-
-  public enum Classification {
-    Beginner,
-    Professional,
-    Expert,
-    Maniac
   }
 }

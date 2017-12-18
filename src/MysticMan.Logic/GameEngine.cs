@@ -1,14 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using MysticMan.Logic;
+using MysticMan.Logic.Internals;
 
-namespace TheMysteryMan.Logic {
-  public class GameEngine: IGameEngine {
-    private Func<int, int, int> _randomGenerator;
+namespace MysticMan.Logic {
+  public class GameEngine : IGameEngine {
+    private readonly GameEngineOptions _options;
 
-    public GameEngine(Func<int, int, int> randomGenerator) {
-      _randomGenerator = randomGenerator;
+    public GameEngine() {
+      _options = new GameEngineOptions {
+        Randomizer = new Randomizer(),
+        Configuration = new GameConfiguration(1)
+      };
       _moveState = new List<MoveDirection>();
+    }
+
+    internal GameEngine(GameEngineOptions options):this() {
+      _options = options;
     }
 
     private readonly List<MoveDirection> _moveState;
@@ -16,7 +23,7 @@ namespace TheMysteryMan.Logic {
     private int _levelCounter;
     private int _roundsCounter;
 
-    public Map Map { get; internal set; }
+    internal Map Map { get; set; }
     public MysticMan Man { get; internal set; }
 
     /// <inheritdoc />
@@ -70,7 +77,8 @@ namespace TheMysteryMan.Logic {
 
           if (MoreRoundsAvailable()) {
             State = GameEngineState.WaitingForNextRound;
-          }else if (MoreLevelsAvailable()) {
+          }
+          else if (MoreLevelsAvailable()) {
             State = GameEngineState.WaitingForNextLevel;
           }
           else {
@@ -116,18 +124,16 @@ namespace TheMysteryMan.Logic {
       UpdateState();
     }
 
-    public GameConfiguration Configuration { get; internal set; }
+    public IGameConfiguration Configuration { get; internal set; }
 
     /// <inheritdoc />
     public void Initialize() {
-      Configuration = new GameConfiguration(1);
+      Configuration = _options.Configuration;
       Size size = Configuration.MapSize.Size;
       Map = new Map(size);
       Man = new MysticMan();
-      // TODO - rewrite to return a position based on the MapSize
-      int xPosition = _randomGenerator(0, size.Width);
-      int yPosition = _randomGenerator(0, size.Height);
-      Man.Position = Map.GetPosition(xPosition, yPosition);
+      Position position = _options.Randomizer.GetRandomPosition(size);
+      Man.Position = Map.GetPosition(position.Left, position.Top);
     }
 
     public void MoveUp() {
@@ -191,40 +197,4 @@ namespace TheMysteryMan.Logic {
       Move(MoveDirection.Left);
     }
   }
-
-  /// <summary>
-  /// Represents a dimension of width and height in the Map
-  /// </summary>
-  internal class Size {
-    public Size() {
-      
-    }
-
-    public Size(int width, int height) {
-      Width = width;
-      Height = height;
-    }
-
-    public  int Width { get; set; }
-    public int Height { get; set; } 
-  }
-
-  /// <summary>
-  /// Represents a position describe the left and top boundaries
-  /// </summary>
-  internal class Position {
-    public Position() {
-      
-    }
-
-    public Position(int left, int top) {
-      Left = left;
-      Top = top;
-    }
-  
-    public int Left { get; set; }
-    public int Top { get; set; }
-    
-  }
-
 }

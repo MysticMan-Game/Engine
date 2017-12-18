@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MysticMan.Logic.Internals;
 
-namespace TheMysteryMan.Logic {
-  public class Map {
-    private Cell[,] _newMap;
+namespace MysticMan.Logic {
+  internal class Map {
+    private readonly Cell[,] _newMap;
 
-    public Map(int x, int y) {
+    private Map(int x, int y) {
       _newMap = new Cell[x, y];
 
       for (int xAxis = 0; xAxis < x; xAxis++) {

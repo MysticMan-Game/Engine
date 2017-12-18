@@ -1,4 +1,4 @@
-﻿namespace TheMysteryMan.Logic
+﻿namespace MysticMan.Logic
 {
     public enum MoveDirection
     {

@@ -4,7 +4,7 @@ using MysticMan.Logic.Internals;
 
 namespace MysticMan.Logic.Tests {
   [TestClass]
-  public class GameEngineInitializationTests {
+  public class RunTests {
     private GameEngineOptions _options;
     private Mock<IRandomizer> _randomizerMock;
     private Mock<IGameConfiguration> _configurationMock;
@@ -23,8 +23,9 @@ namespace MysticMan.Logic.Tests {
       _randomizerMock.Setup(_ => _.GetRandomPosition(It.IsAny<Size>())).Returns(new Position(5, 5));
     }
 
+
     [TestMethod]
-    public void MapAndManAreInitialized() {
+    public void TestMethod1() {
       GameEngine engine = new GameEngine(_options);
       engine.Initialize();
       engine.Start();
@@ -32,49 +33,44 @@ namespace MysticMan.Logic.Tests {
       Assert.AreEqual("A1", engine.Map.GetPosition(0, 0));
       Assert.AreEqual("E5", engine.Map.GetPosition(4, 4));
       Assert.AreEqual("F6", engine.Man.Position);
-
     }
 
     [TestMethod]
-    public void MoveInsideTheMap() {
+    public void TestMoves() {
       _randomizerMock.Setup(_ => _.GetRandomPosition(It.IsAny<Size>())).Returns(new Position(5, 6));
+
 
       GameEngine engine = new GameEngine(_options);
       engine.Initialize();
       engine.Start();
-
       Assert.IsNotNull(engine.Map);
-      Assert.AreEqual("F7", engine.Man.Position, "Starting on Position E7");
+      Assert.AreEqual("F7", engine.Man.Position);
 
       engine.MoveUp();
-      Assert.AreEqual("F6", engine.Man.Position, "Move to F6");
 
+      Assert.AreEqual("F6", engine.Man.Position);
       engine.MoveDown();
-      Assert.AreEqual("F7", engine.Man.Position, "Move to F7");
-
+      Assert.AreEqual("F7", engine.Man.Position);
       engine.MoveLeft();
-      Assert.AreEqual("E7", engine.Man.Position, "Move to E7");
-
+      Assert.AreEqual("E7", engine.Man.Position);
       engine.MoveRight();
-      Assert.AreEqual("F7", engine.Man.Position, "Move to F7");
+      Assert.AreEqual("F7", engine.Man.Position);
     }
 
     [TestMethod]
-    public void MoveOutOfRange() {
-      _randomizerMock.Setup(_ => _.GetRandomPosition(It.IsAny<Size>())).Returns(new Position(0, 0));
+    public void TestMoveOutOfRange() {
       int called = 0;
+      _randomizerMock.Setup(_ => _.GetRandomPosition(It.IsAny<Size>())).Returns(new Position(0, 0));
       GameEngine engine = new GameEngine(_options);
       engine.WallReachedEvent += (sender, args) => { called++; };
       engine.Initialize();
       engine.Start();
       Assert.IsNotNull(engine.Map);
-      Assert.AreEqual("A1", engine.Man.Position, "Start on A1");
+      Assert.AreEqual("A1", engine.Man.Position);
 
       engine.MoveUp();
 
-      Assert.AreEqual("A1", engine.Man.Position, "Did not move from A1");
       Assert.AreEqual(1, called);
     }
-
   }
 }

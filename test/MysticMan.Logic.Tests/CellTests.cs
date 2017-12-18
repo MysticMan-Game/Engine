@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MysticMan.Logic.Internals;
 
-namespace TheMysteryMan.Logic.Tests {
+namespace MysticMan.Logic.Tests {
   [TestClass]
   public class CellTests {
     [TestMethod]
