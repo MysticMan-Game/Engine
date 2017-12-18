@@ -15,7 +15,7 @@ namespace MysticMan.Logic{
     string CurrentPosition { get; }
     void Start();
     ISolutionResult Resolve(string solution);
-    event EventHandler WallReached;
+    event EventHandler WallReachedEvent;
     void StartNextRound();
     void PrepareNextRound();
   }
