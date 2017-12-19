@@ -20,7 +20,6 @@ namespace MysticMan.Logic {
 
     private readonly List<MoveDirection> _moveState;
     private int _movesLeft;
-    private int _levelCounter;
     private int _roundsCounter;
 
     internal Map Map { get; set; }
@@ -30,7 +29,7 @@ namespace MysticMan.Logic {
     public bool NextRoundAvailable => true;
 
     /// <inheritdoc />
-    public int Level => _levelCounter;
+    public int Level => Configuration.Level;
 
     /// <inheritdoc />
     public int Round => _roundsCounter;
@@ -42,10 +41,7 @@ namespace MysticMan.Logic {
     public void Start() {
       _moveState.Clear();
       _movesLeft = Configuration.Moves;
-      _levelCounter = Configuration.Level;
-      _roundsCounter = 0;
-
-
+      _roundsCounter = 1;
       UpdateState();
     }
 
@@ -92,7 +88,7 @@ namespace MysticMan.Logic {
     }
 
     private bool MoreLevelsAvailable() {
-      return _levelCounter < Configuration.LevelsTotalCount;
+      return Level < Configuration.LevelsTotalCount;
     }
 
     private bool MoreRoundsAvailable() {
@@ -101,9 +97,40 @@ namespace MysticMan.Logic {
 
     /// <inheritdoc />
     public ISolutionResult Resolve(string solution) {
-      UpdateState();
+      string startPosition = Man.StartPosition;
+      if (string.Equals(startPosition, solution, StringComparison.OrdinalIgnoreCase)) {
+        State = GameEngineState.GameWon;
+      }
+      else {
+        State = GameEngineState.GameLost;
+      }
 
-      return null;
+      List<string> moves = new List<string>();
+      for (int i = 0; i < _moveState.Count; i++) {
+        MoveDirection move = _moveState[i];
+        switch (move) {
+          case MoveDirection.Left:
+            moves.Add("left");
+            break;
+          case MoveDirection.Right:
+            moves.Add("right");
+            break;
+          case MoveDirection.Up:
+            moves.Add("up");
+            break;
+          case MoveDirection.Down:
+            moves.Add("down");
+            break;
+        }
+      }
+
+      SolutionResult result = new SolutionResult {
+        AnsweredPosition = solution,
+        MagicMan = startPosition,
+        Moves = moves
+      };
+
+      return result;
     }
 
     /// <inheritdoc />
@@ -118,18 +145,22 @@ namespace MysticMan.Logic {
       else if (State == GameEngineState.WaitingForNextLevel) {
         _roundsCounter = 1;
         Configuration.NextLevel();
+        Map = new Map(Configuration.MapSize.Size);
+        Man = new MysticMan();
+        Position randomPosition = _options.Randomizer.GetRandomPosition(Configuration.MapSize.Size);
+        Man.Position = Map.GetPosition(randomPosition.Left, randomPosition.Top);
       }
       _movesLeft = Configuration.Moves;
-      // TODO: calulate new random start position
-      Man = new MysticMan();
-      Position randomPosition = _options.Randomizer.GetRandomPosition(Configuration.MapSize.Size);
-      Man.Position = Map.GetPosition(randomPosition.Left, randomPosition.Top);
 
       UpdateState();
     }
 
     /// <inheritdoc />
     public void PrepareNextRound() {
+      // This method is called either the last round was won or lost
+      Man = new MysticMan();
+      Position randomPosition = _options.Randomizer.GetRandomPosition(Configuration.MapSize.Size);
+      Man.Position = Map.GetPosition(randomPosition.Left, randomPosition.Top);
       UpdateState();
     }
 
@@ -173,11 +204,14 @@ namespace MysticMan.Logic {
       }
 
       string newPosition = Map.GetPosition(x, y);
-
       if (newPosition != null) {
+        _moveState.Add(direction);
         Man.Position = newPosition;
       }
       else {
+        if (!Configuration.CanReachBorder) {
+          _moveState.Add(direction);
+        }
         RaiseWallReachedEvent();
       }
 

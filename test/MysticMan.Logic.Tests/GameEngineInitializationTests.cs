@@ -20,6 +20,7 @@ namespace MysticMan.Logic.Tests {
       _configurationMock.SetupGet(_ => _.MapSize).Returns(new MapSize(new Size(10, 12)));
       _configurationMock.SetupGet(_ => _.Moves).Returns(5);
       _configurationMock.SetupGet(_ => _.Level).Returns(1);
+      _configurationMock.SetupGet(_ => _.CanReachBorder).Returns(true);
       _randomizerMock.Setup(_ => _.GetRandomPosition(It.IsAny<Size>())).Returns(new Position(5, 5));
     }
 

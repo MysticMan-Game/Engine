@@ -11,7 +11,7 @@ namespace MysticMan.Logic {
 
     }
 
-    public int Level { get; }
+    public int Level { get; private set; }
 
     public int Moves { get; private set; }
 
@@ -24,11 +24,12 @@ namespace MysticMan.Logic {
     public int TimeInSeconds { get; set; }
 
     public bool CanReachBorder { get; set; }
-    public int LevelsTotalCount { get; set; }
+    public int LevelsTotalCount => 4;
 
     /// <inheritdoc />
     public void NextLevel() {
-      throw new System.NotImplementedException();
+      Level += 1;
+      Initalize();
     }
 
     private void Initalize() {
@@ -36,9 +37,9 @@ namespace MysticMan.Logic {
       switch (Level) {
         case 1:
           Moves = 3;
-          Rounds = 3;
+          Rounds = 1;
           TimeInSeconds = 9999;
-          CanReachBorder = false;
+          CanReachBorder = true;
           Classification = Classification.Beginner;
           MapSize = new MapSize(new Size(5,5));
           break;
@@ -46,25 +47,25 @@ namespace MysticMan.Logic {
           Moves = 6;
           Rounds = 3;
           TimeInSeconds = 9999;
-          CanReachBorder = false;
-          Classification = Classification.Beginner;
-          MapSize = new MapSize(new Size(5, 5));
+          CanReachBorder = true;
+          Classification = Classification.Professional;
+          MapSize = new MapSize(new Size(8, 8));
           break;
         case 3:
           Moves = 12;
           Rounds = 5;
           TimeInSeconds = 20;
-          CanReachBorder = false;
-          Classification = Classification.Beginner;
-          MapSize = new MapSize(new Size(5, 5));
+          CanReachBorder = true;
+          Classification = Classification.Expert;
+          MapSize = new MapSize(new Size(10, 10));
           break;
         case 4:
           Moves = 15;
           Rounds = 5;
           TimeInSeconds = 20;
-          CanReachBorder = true;
-          Classification = Classification.Beginner;
-          MapSize = new MapSize(new Size(5, 5));
+          CanReachBorder = false;
+          Classification = Classification.Maniac;
+          MapSize = new MapSize(new Size(15, 15));
           break;
       }
     }

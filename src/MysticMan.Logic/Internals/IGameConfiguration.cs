@@ -7,7 +7,7 @@
     MapSize MapSize{ get; }
     int TimeInSeconds{ get; set; }
     bool CanReachBorder{ get; set; }
-    int LevelsTotalCount{ get; set; }
+    int LevelsTotalCount{ get; }
     void NextLevel();
   }
 }
