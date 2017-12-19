@@ -26,6 +26,11 @@ namespace MysticMan.Logic {
     public bool CanReachBorder { get; set; }
     public int LevelsTotalCount { get; set; }
 
+    /// <inheritdoc />
+    public void NextLevel() {
+      throw new System.NotImplementedException();
+    }
+
     private void Initalize() {
       //Check if time is 9999 and then set unlimited time.
       switch (Level) {

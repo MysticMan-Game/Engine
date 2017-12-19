@@ -111,16 +111,25 @@ namespace MysticMan.Logic {
 
     /// <inheritdoc />
     public void StartNextRound() {
+      _moveState.Clear();
+      if (State == GameEngineState.WaitingForNextRound) {
+        _roundsCounter += 1;
+      }
+      else if (State == GameEngineState.WaitingForNextLevel) {
+        _roundsCounter = 1;
+        Configuration.NextLevel();
+      }
+      _movesLeft = Configuration.Moves;
+      // TODO: calulate new random start position
+      Man = new MysticMan();
+      Position randomPosition = _options.Randomizer.GetRandomPosition(Configuration.MapSize.Size);
+      Man.Position = Map.GetPosition(randomPosition.Left, randomPosition.Top);
 
       UpdateState();
     }
 
     /// <inheritdoc />
     public void PrepareNextRound() {
-      // TODO: calulate new random start position
-      Man = new MysticMan();
-      // TODO: inkrement LevelCounter ? 
-      // TODO: prepare map for next level
       UpdateState();
     }
 

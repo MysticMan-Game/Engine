@@ -8,5 +8,6 @@
     int TimeInSeconds{ get; set; }
     bool CanReachBorder{ get; set; }
     int LevelsTotalCount{ get; set; }
+    void NextLevel();
   }
 }
