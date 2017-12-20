@@ -5,8 +5,8 @@
     int Rounds{ get; }
     Classification Classification{ get; }
     MapSize MapSize{ get; }
-    int TimeInSeconds{ get; set; }
-    bool CanReachBorder{ get; set; }
+    int TimeInSeconds{ get; }
+    bool CanReachBorder{ get;  }
     int LevelsTotalCount{ get; }
     void NextLevel();
   }

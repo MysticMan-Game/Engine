@@ -9,7 +9,7 @@ namespace MysticMan.Logic {
     public GameEngine() {
       _options = new GameEngineOptions {
         Randomizer = new Randomizer(),
-        Configuration = new GameConfiguration(1)
+        Configuration = new GameConfiguration()
       };
       _moveState = new List<MoveDirection>();
     }
@@ -235,6 +235,8 @@ namespace MysticMan.Logic {
 
     /// <inheritdoc />
     public int MovesLeft => _movesLeft;
+
+    public MapSize MapSize => Configuration.MapSize;
 
     public void MoveLeft() {
       Move(MoveDirection.Left);

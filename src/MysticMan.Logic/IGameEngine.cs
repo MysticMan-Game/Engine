@@ -13,6 +13,8 @@ namespace MysticMan.Logic{
     int Level { get; }
     int Round { get; }
     string CurrentPosition { get; }
+    MapSize MapSize { get; }
+
     void Start();
     ISolutionResult Resolve(string solution);
     event EventHandler WallReachedEvent;
