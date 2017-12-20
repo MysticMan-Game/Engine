@@ -7,6 +7,7 @@
     GameLost,
     GameWon,
     WaitingForNextRound,
-    WaitingForNextLevel
+    WaitingForNextLevel,
+    Cheat
   }
 }

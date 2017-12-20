@@ -20,5 +20,7 @@ namespace MysticMan.Logic{
     event EventHandler WallReachedEvent;
     void StartNextRound();
     void PrepareNextRound();
+
+    void Cheat();
   }
 }

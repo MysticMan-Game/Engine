@@ -46,8 +46,13 @@ namespace MysticMan.Logic {
     }
 
     /// <summary>
-    /// Updates the ENgines state based on the current state
+    /// Updates the Engines state based on the current state
     /// </summary>
+    ///
+    public  void Cheat() {
+
+      State = GameEngineState.Cheat;
+    }
     private void UpdateState() {
       switch (State) {
         case GameEngineState.Initialized:
@@ -70,6 +75,19 @@ namespace MysticMan.Logic {
           State = GameEngineState.WaitingForMove;
           break;
         case GameEngineState.GameWon:
+
+          if (MoreRoundsAvailable()) {
+            State = GameEngineState.WaitingForNextRound;
+          }
+          else if (MoreLevelsAvailable()) {
+            State = GameEngineState.WaitingForNextLevel;
+          }
+          else {
+            //TODO: Specify what should happen if the player succeeds all levels ;-)
+            State = GameEngineState.Initialized;
+          }
+          break;
+        case GameEngineState.Cheat:
 
           if (MoreRoundsAvailable()) {
             State = GameEngineState.WaitingForNextRound;
