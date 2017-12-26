@@ -61,7 +61,7 @@ namespace MysticMan.Logic {
           State = GameEngineState.WaitingForMove;
           break;
         case GameEngineState.WaitingForMove:
-          _movesLeft -= 1;
+          _movesLeft = Configuration.Moves - _moveState.Count;
           if (_movesLeft <= 0) {
             State = GameEngineState.WaitingForResolving;
           }
@@ -227,7 +227,7 @@ namespace MysticMan.Logic {
         Man.Position = newPosition;
       }
       else {
-        if (!Configuration.CanReachBorder) {
+        if (Configuration.CanReachBorder) {
           _moveState.Add(direction);
         }
         RaiseWallReachedEvent();

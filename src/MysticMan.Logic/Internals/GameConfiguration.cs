@@ -1,11 +1,10 @@
-﻿using System.Linq;
-using System.Collections.Generic;
-using MysticMan.Logic.Internals;
+﻿using System.Collections.Generic;
+using System.Linq;
 
-namespace MysticMan.Logic {
+namespace MysticMan.Logic.Internals {
   internal class GameConfiguration : IGameConfiguration {
 
-    private List<LevelConfiguration> levels = new List<LevelConfiguration>();
+    private List<LevelConfiguration> _levels = new List<LevelConfiguration>();
 
 
     public GameConfiguration() {
@@ -28,7 +27,7 @@ namespace MysticMan.Logic {
     public int TimeInSeconds => Current().TimeInSeconds;
 
     public bool CanReachBorder => Current().CanReachBorder;
-    public int LevelsTotalCount => levels.Count;
+    public int LevelsTotalCount => _levels.Count;
 
     /// <inheritdoc />
     public void NextLevel() {
@@ -36,7 +35,7 @@ namespace MysticMan.Logic {
     }
 
     private void Initalize() {
-      levels = new List<LevelConfiguration>() {
+      _levels = new List<LevelConfiguration>() {
          new LevelConfiguration{Level = 1,  Moves = 3, Rounds = 3, TimeInSeconds = -1, CanReachBorder = true, Classification = Classification.Beginner,  Size =new Size(5,5) },
          new LevelConfiguration{Level = 2,  Moves = 5, Rounds = 3, TimeInSeconds = -1, CanReachBorder = true, Classification = Classification.Beginner,  Size =new Size(5,5) },
          new LevelConfiguration{Level = 3,  Moves = 7, Rounds = 3, TimeInSeconds = -1, CanReachBorder = true, Classification = Classification.Professional,  Size =new Size(8,8) },
@@ -57,7 +56,7 @@ namespace MysticMan.Logic {
     }
 
     private LevelConfiguration Current() {
-      return levels.Single(level => level.Level == Level);
+      return _levels.Single(level => level.Level == Level);
     }
   }
 
@@ -71,6 +70,9 @@ namespace MysticMan.Logic {
 
     public int TimeInSeconds { get; set; }
 
+    /// <summary>
+    /// The MovesCounter will be decremented when value is true and the move will be stored in the moveState
+    /// </summary>
     public bool CanReachBorder { get; set; }
 
     public Classification Classification { get; set; }
